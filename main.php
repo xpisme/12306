@@ -5,16 +5,18 @@ $url = 'https://kyfw.12306.cn/otn/leftTicket/queryT?leftTicketDTO.train_date=201
 
 $res = json_decode($train->httpRequest($url), true);
 $train->getAvailable($res['data']);
+echo '--------高铁------'.PHP_EOL;
+echo $train->high_rails;
 
 class train
 {
-    private $highRails;   
+    public $high_rails = '';
 
     public function getAvailable($list)
     {
         $availableList = [];
         foreach ($list as $info) {
-            if ($info['queryLeftNewDTO']['canWebBuy'] == 'Y') {
+            if ($info['queryLeftNewDTO']['canWebBuy'] != 'N') {
                 $ze_num = $info['queryLeftNewDTO']['ze_num'];
                 $yw_num = $info['queryLeftNewDTO']['yw_num'];
                 $rz_num = $info['queryLeftNewDTO']['rz_num'];
@@ -22,22 +24,37 @@ class train
                 if ($this->isEmpty($ze_num) && $this->isEmpty($yw_num) && $this->isEmpty($rz_num) && $this->isEmpty($yz_num)) {
                     continue;
                 }
-                echo str_pad($info['queryLeftNewDTO']['station_train_code'], 10, ' ');
-                echo "      二等座";
-                echo str_pad($ze_num, 10, ' ');
-                echo "      硬卧 ";
-                echo str_pad($yw_num, 10, ' ');
-                echo "      软座 ";
-                echo str_pad($rz_num, 10, ' ');
-                echo "      硬座 ";
-                echo str_pad($yz_num, 10, ' ');
-                echo "      ";
-                print_r($info['queryLeftNewDTO']['start_time']);
-                echo "      ";
-                print_r($info['queryLeftNewDTO']['arrive_time']);
-                echo "      ";
-                print_r($info['queryLeftNewDTO']['lishi']);
-                echo PHP_EOL;
+                $train_code = $info['queryLeftNewDTO']['station_train_code'];
+               
+                if (substr($train_code, 0, 1) == 'G') {
+                     $str = str_pad($train_code, 8, ' ');
+                     $str .=  "    二等座 ";
+                     $str .=  str_pad($ze_num, 10, ' ');
+                     $str .=  "    ";
+                     $str .= $info['queryLeftNewDTO']['start_time'];
+                     $str .=  "    ";
+                     $str .= $info['queryLeftNewDTO']['arrive_time'];
+                     $str .=  "    ";
+                     $str .= $info['queryLeftNewDTO']['lishi'];
+                     $str .=  PHP_EOL;
+                     $this->high_rails .= $str;
+                } else {
+                     $str = str_pad($train_code, 8, ' ');
+                     $str .=  "    硬卧 ";
+                     $str .=  str_pad($yw_num, 10, ' ');
+                     $str .=  "    软座 ";
+                     $str .=  str_pad($rz_num, 10, ' ');
+                     $str .=  "    硬座 ";
+                     $str .=  str_pad($yz_num, 10, ' ');
+                     $str .=  "    ";
+                     $str .= $info['queryLeftNewDTO']['start_time'];
+                     $str .=  "    ";
+                     $str .= $info['queryLeftNewDTO']['arrive_time'];
+                     $str .=  "    ";
+                     $str .= $info['queryLeftNewDTO']['lishi'];
+                     $str .=  PHP_EOL;
+                    echo $str;
+                }
             }
         }
     }
