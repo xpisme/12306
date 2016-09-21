@@ -1,5 +1,4 @@
 <?php
-
 $train = new train();
 $url = 'https://kyfw.12306.cn/otn/leftTicket/queryT?leftTicketDTO.train_date=2016-10-17&leftTicketDTO.from_station=HDP&leftTicketDTO.to_station=BXP&purpose_codes=ADULT';
 
