@@ -3,4 +3,4 @@
 2：记录常做火车的晚点次数，统计火车晚点的概率
 
 执行
-php main.php
+php init.php
