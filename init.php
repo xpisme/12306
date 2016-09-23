@@ -3,11 +3,11 @@ require 'helpers.php';
 spl_autoload_register('myAutoLoad');
 
 $packUrl = new packUrl();
-$packUrl->setDate('2016-10-17'); 
+$packUrl->setDate('2016-10-27'); 
 $packUrl->setFromStation('HDP'); 
 $packUrl->setToStation('BXP'); 
 $resData = httpRequest($packUrl->buildUrl());
 
-$format = new Format($resData);
+$format = new Rails($resData);
 $res = $format->getHighRails();
-print_r($res);
+$res = $format->getOrdinaryRails();
