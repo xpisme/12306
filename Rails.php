@@ -56,43 +56,43 @@ class Rails
         }
     }
 
-    public function getHighRails()
+    public function getHighRails($hide = false)
     {
-        return $this->format->getHighRails($this->highRails);
+        return $this->format->getHighRails($this->highRails, $hide);
     }
 
-    public function getOrdinaryRails()
+    public function getOrdinaryRails($hide = false)
     {
-        return $this->format->getOrdinaryRails($this->ordinaryRails);
+        return $this->format->getOrdinaryRails($this->ordinaryRails, $hide);
     }
 
-    public function getHighSpeedRails()
+    public function getHighSpeedRails($hide = false)
     {
-        $this->highSpeedRails;
+        return $this->format->getHighRails($this->highSpeedRails, $hide);
     }
 
-    public function getmoveSpeedRails()
+    public function getmoveSpeedRails($hide = false)
     {
-        $this->moveSpeedRails;
+        return $this->format->getHighRails($this->moveSpeedRails, $hide);
     }
 
-    public function getDirectlyRails()
+    public function getDirectlyRails($hide = false)
     {
-        $this->directlyRails;
+        return $this->format->getOrdinaryRails($this->directlyRails, $hide);
     }
 
-    public function getSpecialRails()
+    public function getSpecialRails($hide = false)
     {
-        $this->specialRails;
+        return $this->format->getOrdinaryRails($this->specialRails, $hide);
     }
 
-    public function getFastRails()
+    public function getFastRails($hide = false)
     {
-        $this->fastRails;
+        return $this->format->getOrdinaryRails($this->fastRails, $hide);
     }
 
-    public function getOtherRails()
+    public function getOtherRails($hide = false)
     {
-        $this->otherRails;
+        return $this->format->getOrdinaryRails($this->otherRails, $hide);
     }
 }
