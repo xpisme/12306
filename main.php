@@ -1,6 +1,9 @@
 <?php
 require 'helpers.php';
 spl_autoload_register('myAutoLoad');
+#unset($argv[0]);
+#Arguments::analyze($argv);
+#die;
 
 $packUrl = new packUrl();
 $packUrl->setDate('2016-10-27'); 
