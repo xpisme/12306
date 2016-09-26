@@ -9,20 +9,12 @@ class Format
                 continue; 
             }
             $resString .= str_pad($info['station_train_code'], 8, ' ');
-            $tmpString = '';
-            if (!$this->isEmpty($info['yw_num'])) {
-                $tmpString .= "    硬卧 ";
-                $tmpString .= str_pad($info['yw_num'], 10 - mb_strlen($info['yw_num']), ' ');
-            }
-            if (!$this->isEmpty($info['rz_num'])) {
-                $tmpString .= "    软座 ";
-                $tmpString .= str_pad($info['rz_num'], 10 - mb_strlen($info['rz_num']), ' ');
-            }
-            if (!$this->isEmpty($info['yz_num'])) {
-                $tmpString .= "    硬座 ";
-                $tmpString .= str_pad($info['yz_num'], 10 - mb_strlen($info['yz_num']), ' ');
-            }
-            $resString .= str_pad($tmpString, 35, " ");
+            $resString .= "    硬卧 ";
+            $resString .= str_pad($info['yw_num'], 10 - mb_strlen($info['yw_num']), ' ');
+            $resString .= "    软座 ";
+            $resString .= str_pad($info['rz_num'], 10 - mb_strlen($info['rz_num']), ' ');
+            $resString .= "    硬座 ";
+            $resString .= str_pad($info['yz_num'], 10 - mb_strlen($info['yz_num']), ' ');
             $resString .= "    ";
             $resString .= $info['start_time'];
             $resString .= "发 ";
