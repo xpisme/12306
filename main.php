@@ -8,15 +8,21 @@ $startSn = key($start);
 $endName = current($end);
 $endSn = key($end);
 
-echo "日期：{$date}   出发地：{$startName}   目的地：{$endName}" . PHP_EOL . PHP_EOL;
+
 
 $packUrl = new packUrl();
-$packUrl->setDate($date); 
-$packUrl->setFromStation($startSn); 
-$packUrl->setToStation($endSn); 
-$resData = httpRequest($packUrl->buildUrl());
-
-$format = new Rails($resData);
-$hide = false;
-$format->getHighRails($hide);
-$format->getOrdinaryRails($hide);
+while (true) {
+    usleep(500000);
+    echo PHP_EOL;
+    $packUrl->setDate($date); 
+    $packUrl->setFromStation($startSn); 
+    $packUrl->setToStation($endSn); 
+    $resData = httpRequest($packUrl->buildUrl());
+    
+    $format = new Rails($resData);
+    $hide = true;
+    $res = "日期：{$date}   出发地：{$startName}   目的地：{$endName}" . PHP_EOL . PHP_EOL;
+    $res .= $format->getHighRails($hide);
+    $res .= $format->getOrdinaryRails($hide);
+    mail('xxxx@qq.com', 'Subject！', $res);
+}

@@ -18,10 +18,15 @@ class Rails
         $this->format = new Format();
         $this->data = []; 
         $sourceData = json_decode($sourceData, true);
-        foreach ($sourceData['data'] as $info) {
-            if ($info['queryLeftNewDTO']['canWebBuy'] != 'N') {
-                $this->data[] = $info['queryLeftNewDTO'];
-                $this->checkCategory($info['queryLeftNewDTO']);
+        if ($sourceData && !isset($sourceData['data'])) {
+            echo '数据不存在';exit();
+        }
+        if (isset($sourceData['data'])) {
+            foreach ($sourceData['data'] as $info) {
+                if ($info['queryLeftNewDTO']['canWebBuy'] != 'N') {
+                    $this->data[] = $info['queryLeftNewDTO'];
+                    $this->checkCategory($info['queryLeftNewDTO']);
+                }
             }
         }
     }
