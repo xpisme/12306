@@ -26,6 +26,6 @@ class packUrl
     public function buildUrl()
     {
         $this->urlParam = array_merge($this->urlParam, ['purpose_codes' => 'ADULT']);
-        return $this->baseUrl . http_build_query($this->urlParam); 
+        return $this->baseUrl . http_build_query($this->urlParam);
     }
 }

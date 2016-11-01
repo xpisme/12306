@@ -14,9 +14,9 @@ $packUrl = new packUrl();
 while (true) {
     usleep(500000);
     echo PHP_EOL;
-    $packUrl->setDate($date); 
-    $packUrl->setFromStation($startSn); 
-    $packUrl->setToStation($endSn); 
+    $packUrl->setDate($date);
+    $packUrl->setFromStation($startSn);
+    $packUrl->setToStation($endSn);
     $resData = httpRequest($packUrl->buildUrl());
     
     $format = new Rails($resData);

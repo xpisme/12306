@@ -16,10 +16,11 @@ class Rails
     public function __construct($sourceData)
     {
         $this->format = new Format();
-        $this->data = []; 
+        $this->data = [];
         $sourceData = json_decode($sourceData, true);
         if ($sourceData && !isset($sourceData['data'])) {
-            echo '数据不存在';exit();
+            echo '数据不存在';
+            exit();
         }
         if (isset($sourceData['data'])) {
             foreach ($sourceData['data'] as $info) {
@@ -34,7 +35,7 @@ class Rails
     public function checkCategory($info)
     {
         $name = $info['station_train_code']{0};
-        switch($name){
+        switch ($name) {
             case 'G':
                 $this->highSpeedRails[] = $info;
             break;
@@ -50,14 +51,14 @@ class Rails
             case 'K':
                 $this->fastRails[] = $info;
             break;
-            default :
+            default:
                 $this->otherRails[] = $info;
             break;
         }
         if (in_array($name, ['G', 'D'])) {
-            $this->highRails[] = $info; 
+            $this->highRails[] = $info;
         } else {
-            $this->ordinaryRails[] = $info; 
+            $this->ordinaryRails[] = $info;
         }
     }
 

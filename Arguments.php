@@ -28,7 +28,7 @@ class Arguments
     private static function getCity($name)
     {
         if (!self::$cityList) {
-            self::$cityList = include 'city.php';     
+            self::$cityList = include 'city.php';
         }
         if (isset(self::$cityList[$name])) {
             return self::$cityList[$name];

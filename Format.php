@@ -6,7 +6,7 @@ class Format
         $resString = '';
         foreach ($list as $info) {
             if ($this->isEmpty($info['yw_num']) && $this->isEmpty($info['rz_num']) && $this->isEmpty($info['yz_num'])) {
-                continue; 
+                continue;
             }
             $resString .= str_pad($info['station_train_code'], 8, ' ');
             $resString .= "    硬卧 ";
@@ -24,9 +24,9 @@ class Format
             $resString .=  PHP_EOL;
         }
         if ($hide) {
-            return $resString; 
+            return $resString;
         }
-        echo $resString; 
+        echo $resString;
     }
     public function gethighRails($list, $hide = false)
     {
@@ -48,9 +48,9 @@ class Format
             $resString .=  PHP_EOL;
         }
         if ($hide) {
-            return $resString; 
+            return $resString;
         }
-        echo $resString; 
+        echo $resString;
     }
 
     private function getSeatName($key)

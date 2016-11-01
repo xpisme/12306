@@ -1,7 +1,7 @@
 <?php
 // 公共函数库
 if (! function_exists('httpRequest')) {
-    function httpRequest ($url, $postData = false)
+    function httpRequest($url, $postData = false)
     {
         $ch = curl_init();
         //设置超时
